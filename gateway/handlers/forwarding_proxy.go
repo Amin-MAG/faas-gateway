@@ -33,6 +33,9 @@ func MakeForwardingProxyHandler(proxy *types.HTTPClientReverseProxy,
 		originalURL := r.URL.String()
 		requestURL := urlPathTransformer.Transform(r)
 
+		// TODO: Remove this
+		fmt.Printf("forwarding the request %s, %s\n", requestURL, originalURL)
+
 		for _, notifier := range notifiers {
 			notifier.Notify(r.Method, requestURL, originalURL, http.StatusProcessing, "started", time.Second*0)
 		}
